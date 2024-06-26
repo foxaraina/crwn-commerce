@@ -19,7 +19,7 @@ const CheckoutItem = ({cartItem}) => {
 
     const addItemHandler = () => addToCart(cartItem)
     const removeItemHandler = () => removeFromCart(cartItem)
-    const checkoutItemHandler = () => clearCartItem(cartItem.id)
+    const checkoutItemHandler = () => clearCartItem(cartItem)
 
     return (
         <CheckoutItemContainer>

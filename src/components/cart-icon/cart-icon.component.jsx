@@ -4,11 +4,11 @@ import {CartContext} from "../../context/cart.context";
 import {CartIconWrapper, ItemCount} from "./cart-icon.styles";
 
 const CartIcon = () => {
-    const {setIsCartOpen} = useContext(CartContext)
+    const {isCartOpen, setIsCartOpen} = useContext(CartContext)
     const {cartCount} = useContext(CartContext);
 
     return (
-        <CartIconWrapper onClick={() => setIsCartOpen(prevIsCartOpen => !prevIsCartOpen)}>
+        <CartIconWrapper onClick={() => setIsCartOpen(!isCartOpen)}>
             <ShoppingIcon />
             <ItemCount>{cartCount}</ItemCount>
         </CartIconWrapper>
