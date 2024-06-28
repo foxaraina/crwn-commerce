@@ -7,7 +7,6 @@ import {
     signInWithGooglePopup, signOutUser
 } from "../../utils/firebase/firebase.utils";
 import {
-    setCurrentUser,
     signInFailed,
     signInSuccess,
     signOutFailed,
@@ -15,7 +14,7 @@ import {
     signUpFailed,
     signUpSuccess
 } from "./user.actions";
-import {USER_ACTIONS_TYPE as USER_ACTIONS_TYPES, USER_ACTIONS_TYPE} from "./user.types";
+import {USER_ACTIONS_TYPE} from "./user.types";
 
 export function* getSnapshotFromUserAuth(userAuth, additionalDetails) {
     try {
@@ -86,27 +85,27 @@ export function* signInAfterSignUp({ payload: { user, additionalDetails } }) {
 }
 
 export function* onGoogleSignInStart() {
-    yield takeLatest(USER_ACTIONS_TYPES.GOOGLE_SIGN_IN_START, signInWithGoggle);
+    yield takeLatest(USER_ACTIONS_TYPE.GOOGLE_SIGN_IN_START, signInWithGoggle);
 }
 
 export function* onCheckUserSession() {
-    yield takeLatest(USER_ACTIONS_TYPES.CHECK_USER_SESSION, isUserAuthenticated);
+    yield takeLatest(USER_ACTIONS_TYPE.CHECK_USER_SESSION, isUserAuthenticated);
 }
 
 export function* onEmailSignInStart() {
-    yield takeLatest(USER_ACTIONS_TYPES.EMAIL_SIGN_IN_START, signInWithEmail);
+    yield takeLatest(USER_ACTIONS_TYPE.EMAIL_SIGN_IN_START, signInWithEmail);
 }
 
 export function* onSignUpStart() {
-    yield takeLatest(USER_ACTIONS_TYPES.SIGN_UP_START, signUp);
+    yield takeLatest(USER_ACTIONS_TYPE.SIGN_UP_START, signUp);
 }
 
 export function* onSignUpSuccess() {
-    yield takeLatest(USER_ACTIONS_TYPES.SIGN_UP_SUCCESS, signInAfterSignUp);
+    yield takeLatest(USER_ACTIONS_TYPE.SIGN_UP_SUCCESS, signInAfterSignUp);
 }
 
 export function* onSignOutStart() {
-    yield takeLatest(USER_ACTIONS_TYPES.SIGN_OUT_START, signOut);
+    yield takeLatest(USER_ACTIONS_TYPE.SIGN_OUT_START, signOut);
 }
 
 export function* userSagas() {
