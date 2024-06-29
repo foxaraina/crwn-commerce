@@ -1,3 +1,0 @@
-export const USER_ACTIONS_TYPE = {
-    GET_CURRENT_USER: "GET_CURRENT_USER",
-}

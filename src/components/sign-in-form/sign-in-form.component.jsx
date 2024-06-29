@@ -5,11 +5,13 @@ import Button, {BUTTON_TYPE_CLASSES} from '../button/button.component';
 
 import {
     signInWithGooglePopup,
-    signInAuthUserWithEmailAndPassword,
+    signInAuthUserWithEmailAndPassword, signInWithGoogleRedirect,
 } from '../../utils/firebase/firebase.utils';
 
 import './sign-in-form.styles';
 import {ButtonsContainer, SignInContainer} from "./sign-in-form.styles";
+import {signInWithEmail} from "../../store/user/user.slice";
+import {useDispatch} from "react-redux";
 
 const defaultFormFields = {
     email: '',
@@ -19,23 +21,21 @@ const defaultFormFields = {
 const SignInForm = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { email, password } = formFields;
+    const dispatch = useDispatch()
 
     const resetFormFields = () => {
         setFormFields(defaultFormFields);
     };
 
     const signInWithGoogle = async () => {
-        const { user } = await signInWithGooglePopup();
+        await dispatch(signInWithGoogle())
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         try {
-            const {user} = await signInAuthUserWithEmailAndPassword(
-                email,
-                password
-            );
+            dispatch(signInWithEmail({email, password}));
 
             resetFormFields();
         } catch (error) {
